@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "../../lib/prisma";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const salt = bcrypt.getSaltSync();
+  const salt = bcrypt.genSaltSync();
   const { email, password } = req.body;
 
   let user;
@@ -20,6 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (e) {
     res.status(401);
     res.json({ error: "user already exists" });
+    return;
   }
 
   const token = jwt.sign(
