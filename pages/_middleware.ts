@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-
-const signedinPages = ["/", "/playlist", "/library", "/favorites"];
+import { authPages } from "../constants/constants";
 
 export default function middleware(req: NextRequest): NextResponse | null {
   const { pathname, origin } = req.nextUrl;
-  if (signedinPages.find((p) => p === req.nextUrl.pathname)) {
+  if (authPages.find((p) => p === req.nextUrl.pathname)) {
     const token = req.cookies.TRAX_ACCESS_TOKEN;
 
     if (!token) {

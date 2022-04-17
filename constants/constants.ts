@@ -52,3 +52,7 @@ export const artistsData: {
 ];
 
 
+
+export const authPages = ["/", "/playlist", "/library", "/favorites"];
+
+
